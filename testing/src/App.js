@@ -40,9 +40,16 @@ function App() {
 // react hook
 function Counter(){
   const [count, setCount] = useState(5);
+  //const handleIncrease = () => setCount(count + 1);
+  const handleIncrease = () => {
+    // const newCount = count + 1;
+    setCount(count + 1);
+  }
   return(
     <div>
       <h3>Count: {count}</h3>
+      <button onClick={handleIncrease}>Increase</button>
+      <button onClick={ () => setCount(count -1)}>Decrease</button>
     </div>
   )
 }
