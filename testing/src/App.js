@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 // import logo from './logo.svg';
 import './App.css';
 
@@ -21,6 +21,7 @@ function App() {
         <Product product={products[1]}></Product>
         <Product product={products[2]}></Product>
         <Counter></Counter>
+        <Users></Users>
         <ul>
           {
             bdteam.map(bdteams => <li>{bdteams}</li>)
@@ -50,6 +51,25 @@ function Counter(){
       <h3>Count: {count}</h3>
       <button onClick={handleIncrease}>Increase</button>
       <button onClick={ () => setCount(count -1)}>Decrease</button>
+    </div>
+  )
+}
+function Users(){
+  const [users, setUsers] = useState([]);
+  useEffect(() =>{
+    fetch('https://jsonplaceholder.typicode.com/users')
+    .then(res => res.json())
+    .then(data => setUsers(data));
+  }, []) 
+  // []) ata use korla bar bar ak e jinis asba na useEffect er jono, data load korer jono ata use korta hoi
+  return(
+    <div>
+      <h4>Dynamic Users: {users.length}</h4>
+      <ul>
+        {
+          users.map(user => <li>{user.name}</li>)
+        }
+      </ul>
     </div>
   )
 }
