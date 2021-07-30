@@ -1,3 +1,4 @@
+import React, { useState } from 'react';
 // import logo from './logo.svg';
 import './App.css';
 
@@ -19,6 +20,7 @@ function App() {
         <Product product={products[0]}></Product>
         <Product product={products[1]}></Product>
         <Product product={products[2]}></Product>
+        <Counter></Counter>
         <ul>
           {
             bdteam.map(bdteams => <li>{bdteams}</li>)
@@ -35,6 +37,15 @@ function App() {
     </div>
   );
 }
+// react hook
+function Counter(){
+  const [count, setCount] = useState(5);
+  return(
+    <div>
+      <h3>Count: {count}</h3>
+    </div>
+  )
+}
 function Person(props){
   return (
     <div style={{border: '2px solid gold', width: '400px', margin: '10px'}}>
@@ -47,7 +58,7 @@ function Product(props){
   const productStyle= {
     border: '1px solid gray',
     borderRadius: '5px',
-    backgroundColor: 'lightgray',
+    backgroundColor: 'lightgrey',
     height: '200px',
     width: '200px',
     float: 'left'
