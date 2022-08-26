@@ -21,6 +21,24 @@ const schema = yup.object().shape({
     }),
 });
 
+const UploadFileSchema = yup.object().shape({
+file: yup
+    .mixed()
+    .required("You need to provide a file")
+    .test("fileSize", "The file is too large", (value) => {
+        return value && value[0].sienter code hereze <= 2000000;
+    })
+    .test("type", "Only the following formats are accepted: .jpeg, .jpg, .bmp, .pdf and .doc", (value) => {
+        return value && (
+            value[0].type === "image/jpeg" ||
+            value[0].type === "image/bmp" ||
+            value[0].type === "image/png" ||
+            value[0].type === 'application/pdf' ||
+            value[0].type === "application/msword"
+        );
+    }),
+});
+
 const AddService = () => {
   const {
     register,
@@ -37,7 +55,7 @@ const AddService = () => {
   //   )
   // );
 
-  const imageStorageKey = '9898d74d96232e8aa8ab3cbd1b719668';
+  const imageStorageKey = '';
 
   const onSubmit = async (data) => {
     const image = data.image[0];
